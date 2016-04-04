@@ -32,25 +32,25 @@ body{
 
 #wrapper{
   height: 100vh;
-  width: 50vw;
-  margin: 0 auto;
-  background-color: #f0f0f0;
+  width: 100vw;
+  margin: 0;
 }
 
 #currency_bar{
   width: 100%;
   color: #ffffff;
   background-color: #43A047;
+  padding: 1vh 0;
 }
 
 #main_image{
-  height: 45%;
   width: 100%;
+  max-height: 430px;
 }
 
 #main_image img{
   width: 100%;
-  height: 45vh;
+  min-height: 45vh;
 }
 
 #main_menu{
@@ -59,4 +59,23 @@ body{
 
 #main_menu li a{
   color: #ffffff;
+  padding: 1vh 0;
+}
+
+#tabs{
+  background-color: #f0f0f0;
+  min-height: 430px;
+}
+
+@media only screen and (min-width:960px){
+  /*Desktop Specifc Styles*/
+  #wrapper {
+    min-width: 960px;
+    width: 50vw;
+    margin: 0 auto;
+  }
+  #main_image img{
+    width: 100%;
+    min-height: 430px;
+  }
 }

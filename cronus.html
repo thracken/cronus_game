@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Cronus - A Story-Driven Incremental Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -11,14 +13,17 @@
 <body>
 <div id="wrapper">
 
-<ul id="currency_bar" class="menu">
-<li>-xp</li>
-<li>-g</li>
-<li>-&loz;</li>
-</ul><!--currency_bar-->
+<div id="currency_bar">
+<ul class="menu">
+<li>-&nbsp;xp</li>
+<li>-&nbsp;g</li>
+<li>-&nbsp;&loz;</li>
+</ul>
+</div><!--currency_bar-->
+
 <div class="clear" /></div>
 
-<img id="main_image" src="img/tubes.png"><!--main_image-->
+<img id="main_image" src="img/tubes.png">
 <br class="clear" />
 
 <ul id="main_menu" class="menu">
@@ -29,6 +34,7 @@
 <li id="menu5"><a href="#">Acheivements</a></li>
 </ul><!--main_menu-->
 
+<div id="tabs">
 <div id="armor_tab" style="display: none;">
 </div><!--armor_tab-->
 
@@ -43,7 +49,7 @@
 
 <div id="acheivements_tab" style="display: none;">
 </div><!--acheivements_tab-->
-
+</div><!--tabs-->
 
 </div><!-- wrapper -->
 </body>
