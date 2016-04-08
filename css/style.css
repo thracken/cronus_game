@@ -1,81 +1,50 @@
-html{
-  height: 100%;
-}
-
 body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.clear{
-  clear: both;
-}
-
-.menu{
-  text-align: center;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li{
-  list-style: none;
-  display: inline-block;
-  margin: 0 8px;
-}
-
-.menu li a{
-  display: block;
-  text-decoration: none;
+  padding-top: 50px;
 }
 
 #wrapper{
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
+  max-width: 960px;
+  background-color: #f0f0f0;
 }
 
 #currency_bar{
-  width: 100%;
+  max-width: 960px;
+  background-color: #2196f3;
   color: #ffffff;
-  background-color: #43A047;
-  padding: 1vh 0;
-}
 
-#main_image{
-  width: 100%;
-  max-height: 430px;
+}
+#currency_bar .navbar-brand{
+  color: #ffffff;
+}
+#currency_bar ul{
+
+}
+#currency_bar li{
+  float: right;
+  display:inline-block;
+}
+#currency_bar li a{
+  color: #ffffff;
+}
+#settings_gear{
+  color: #ffffff;
 }
 
 #main_image img{
   width: 100%;
-  min-height: 45vh;
+  border: 1px solid #f0f0f0;
+  max-height: 430px;
 }
 
+/*
 #main_menu{
   background-color: #2196f3;
 }
-
 #main_menu li a{
   color: #ffffff;
-  padding: 1vh 0;
 }
-
-#tabs{
-  background-color: #f0f0f0;
-  min-height: 430px;
+#main_menu li a:hover{
+  color: #2196f3;
+  background-color: #ffffff;
 }
-
-@media only screen and (min-width:960px){
-  /*Desktop Specifc Styles*/
-  #wrapper {
-    min-width: 960px;
-    width: 50vw;
-    margin: 0 auto;
-  }
-  #main_image img{
-    width: 100%;
-    min-height: 430px;
-  }
-}
+*/
