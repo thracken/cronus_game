@@ -37,5 +37,18 @@ body{
 }
 
 .story-image{
-  max-width:100%;
+  width:100%;
+  height: auto;
+}
+.modal-dialog{
+  margin: 50px auto;
+}
+.modal-content{
+  color: #000000;
+}
+.modal-header{
+  padding: 15px 15px 0px 15px;
+}
+.modal-body{
+  padding: 0px;
 }

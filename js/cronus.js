@@ -34,12 +34,15 @@ TeamMember = (function() {
 })();
 
 StorySegment = (function() {
-  function StorySegment(num, images) {
+  function StorySegment(num, name, images) {
+    var x;
     this.num = num;
+    this.name = name;
     this.images = images;
+    x = 0;
     this.show = function() {
       var html;
-      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + "</h4>" + "</div>" + "<div class='modal-body'>" + "<img class='story-image' src=" + this.images[0] + " class='row' />" + "<p class='row'>This is the body text. Yay!</p>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>" + "</div>" + "<div class='modal-body'>" + "<img class='story-image' src=" + this.images[x] + " class='row' />" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
       $('body').append(html);
       return $('#story-segment-1').modal("show");
     };
@@ -49,7 +52,7 @@ StorySegment = (function() {
 
 })();
 
-segment1 = new StorySegment(1, ["img/tube1.jpg", "img/tubes.png"]);
+segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg", "img/tubes.png"]);
 
 first_launch = function() {
   return true;
@@ -77,4 +80,5 @@ Mission
 Achievement
 Currency
 960x430 is standard size for main_image
+960x430 = 900
  */
