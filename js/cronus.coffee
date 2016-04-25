@@ -1,11 +1,28 @@
+#Currencies
+class Currency
+  constructor: (@name, @amount) ->
+    @spend = (amount) ->
+      @amount -= amount
+    @gain = ->
+      @amount += amount
+
+gold = new Currency("Gold", 0)
+xp = new Currency("Experience", 0)
+crystals = new Currency("Crystals", 0)
+
+
+
 #Player Stat Items
 class TeamMember
-  constructor: (@name) ->
+  constructor: (@name,main_stat) ->
     @str = 1
     @fort = 1
     @dex = 1
     @speed = 1
     @energy = 20
+
+    @skill_points = 0
+    @total_xp_gained = 0
 
     @hp = ->
       @fort * 10
@@ -19,14 +36,16 @@ class TeamMember
       (@dex/100)
     @dodge = ->
       1 + ((@speed+@dex)/100)
+    @lvl = ->
+      1
 
 
 #Story Items
 class StorySegment
   constructor: (@num, @name, @images) ->
     #unlock = ->
-    x = 0
     @show = ->
+      x = 0
       html = "<div id='story-segment-1' class='container-fluid modal fade'>"+"
         <div class='modal-dialog modal-lg' role='document'>"+"
           <div class='modal-content'>"+"
@@ -43,9 +62,16 @@ class StorySegment
         </div>"+"
       </div>"
       $('body').append(html)
-      $('#story-segment-1').modal "show"
+      $('#story-segment-1').modal({"show": "true", backdrop: "static"})
 
-segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tubes.png"])
+      $('.story-image').click( =>
+          x += 1
+          $('.story-image').attr('src', @images[x])
+      )
+
+
+
+segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tube2.jpg","img/tube3.jpg","img/tube4.jpg","img/tube5.jpg","img/tube6.jpg","img/tube7.jpg","img/tube8.jpg","img/tube9.jpg"])
 
 
 #General Functions
