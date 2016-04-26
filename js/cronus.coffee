@@ -46,12 +46,7 @@ class StorySegment
   constructor: (@num, @name, @images) ->
     #unlocked = ->
     @progression = 0
-
-    @completed = ->
-      if @progression >= @images.length - 1
-        true
-      else
-        false
+    @completed = false
 
     @show = ->
       html = "<div id='story-segment-1' class='container-fluid modal fade'>"+"
@@ -73,16 +68,23 @@ class StorySegment
       </div>"
       $('body').append(html)
       $('#story-segment-1').modal({"show": "true", backdrop: "static"})
-      #Advance to next image when clicked
-      $('#story-arrow-right').click( =>
-          @progression += 1
-          $('.story-image').attr('src', @images[@progression])
-      )
+      #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
           @progression -= 1
           $('.story-image').attr('src', @images[@progression])
       )
-
+      $('#story-arrow-right').click( =>
+          if @progression == @images.length - 1
+            $('#story-close').click()
+            @completed = true
+          if @progression < @images.length - 1
+            @progression += 1
+            $('.story-image').attr('src', @images[@progression])
+      )
+      $('#story-close').click( =>
+        if @progression == @images.length - 1
+          @completed = true
+      )
 
 
 
