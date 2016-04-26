@@ -77,15 +77,21 @@ StorySegment = (function() {
     };
     this.show = function() {
       var html;
-      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>" + "</div>" + "<div class='modal-body'>" + "<img class='story-image' src=" + this.images[this.progression] + " class='row' />" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>" + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + "<img class='story-image' src=" + this.images[this.progression] + " class='row' />" + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
       $('body').append(html);
       $('#story-segment-1').modal({
         "show": "true",
         backdrop: "static"
       });
-      return $('.story-image').click((function(_this) {
+      $('#story-arrow-right').click((function(_this) {
         return function() {
           _this.progression += 1;
+          return $('.story-image').attr('src', _this.images[_this.progression]);
+        };
+      })(this));
+      return $('#story-arrow-left').click((function(_this) {
+        return function() {
+          _this.progression -= 1;
           return $('.story-image').attr('src', _this.images[_this.progression]);
         };
       })(this));

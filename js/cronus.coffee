@@ -62,7 +62,9 @@ class StorySegment
               <h4 class='modal-title' id='myModalLabel'>" + @num + " - " + @name + "</h4>"+"
             </div>"+"
             <div class='modal-body'>"+"
+              <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>"+"
               <img class='story-image' src=" + @images[@progression] + " class='row' />"+"
+              <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>"+"
             </div>"+"
             <div class='modal-footer'>"+"
             </div>"+"
@@ -72,8 +74,12 @@ class StorySegment
       $('body').append(html)
       $('#story-segment-1').modal({"show": "true", backdrop: "static"})
       #Advance to next image when clicked
-      $('.story-image').click( =>
+      $('#story-arrow-right').click( =>
           @progression += 1
+          $('.story-image').attr('src', @images[@progression])
+      )
+      $('#story-arrow-left').click( =>
+          @progression -= 1
           $('.story-image').attr('src', @images[@progression])
       )
 

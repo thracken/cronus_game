@@ -39,6 +39,8 @@ body{
 .story-image{
   width:100%;
   height: auto;
+  position: relative;
+
 }
 .modal-dialog{
   margin: 50px auto;
@@ -51,4 +53,24 @@ body{
 }
 .modal-body{
   padding: 0px;
+}
+#story-arrow-left{
+  font-size: 3em;
+  color: #ffffff;
+  text-shadow: 0px 0px 10px #000000;
+  position: absolute;
+  top: 50%;
+  left: 0em;
+  z-index: 2;
+  cursor:pointer;
+}
+#story-arrow-right{
+  font-size: 3em;
+  color: #ffffff;
+  text-shadow: 0px 0px 4px #000000;
+  position: absolute;
+  top: 50%;
+  right: 0em;
+  z-index: 2;
+  cursor:pointer;
 }
