@@ -17,11 +17,11 @@ Currency = (function() {
 
 })();
 
-gold = new Currency("Gold", 5000);
+gold = new Currency("Gold", 0);
 
 xp = new Currency("Experience", 0);
 
-crystals = new Currency("Crystals", 150);
+crystals = new Currency("Crystals", 0);
 
 TeamMember = (function() {
   function TeamMember(name, main_stat) {
@@ -61,14 +61,23 @@ TeamMember = (function() {
 })();
 
 StorySegment = (function() {
+  StorySegment.SegmentsCompleted = 0;
+
   function StorySegment(num, name, images) {
     this.num = num;
     this.name = name;
     this.images = images;
+    this.progression = 0;
+    this.completed = function() {
+      if (this.progression >= this.images.length - 1) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     this.show = function() {
-      var html, x;
-      x = 0;
-      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>" + "</div>" + "<div class='modal-body'>" + "<img class='story-image' src=" + this.images[x] + " class='row' />" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      var html;
+      html = "<div id='story-segment-1' class='container-fluid modal fade'>" + "<div class='modal-dialog modal-lg' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + "<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>" + "</div>" + "<div class='modal-body'>" + "<img class='story-image' src=" + this.images[this.progression] + " class='row' />" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
       $('body').append(html);
       $('#story-segment-1').modal({
         "show": "true",
@@ -76,8 +85,8 @@ StorySegment = (function() {
       });
       return $('.story-image').click((function(_this) {
         return function() {
-          x += 1;
-          return $('.story-image').attr('src', _this.images[x]);
+          _this.progression += 1;
+          return $('.story-image').attr('src', _this.images[_this.progression]);
         };
       })(this));
     };

@@ -42,10 +42,18 @@ class TeamMember
 
 #Story Items
 class StorySegment
+  @SegmentsCompleted = 0
   constructor: (@num, @name, @images) ->
-    #unlock = ->
+    #unlocked = ->
+    @progression = 0
+
+    @completed = ->
+      if @progression >= @images.length - 1
+        true
+      else
+        false
+
     @show = ->
-      x = 0
       html = "<div id='story-segment-1' class='container-fluid modal fade'>"+"
         <div class='modal-dialog modal-lg' role='document'>"+"
           <div class='modal-content'>"+"
@@ -54,7 +62,7 @@ class StorySegment
               <h4 class='modal-title' id='myModalLabel'>" + @num + " - " + @name + "</h4>"+"
             </div>"+"
             <div class='modal-body'>"+"
-              <img class='story-image' src=" + @images[x] + " class='row' />"+"
+              <img class='story-image' src=" + @images[@progression] + " class='row' />"+"
             </div>"+"
             <div class='modal-footer'>"+"
             </div>"+"
@@ -63,11 +71,12 @@ class StorySegment
       </div>"
       $('body').append(html)
       $('#story-segment-1').modal({"show": "true", backdrop: "static"})
-
+      #Advance to next image when clicked
       $('.story-image').click( =>
-          x += 1
-          $('.story-image').attr('src', @images[x])
+          @progression += 1
+          $('.story-image').attr('src', @images[@progression])
       )
+
 
 
 
