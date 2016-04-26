@@ -35,6 +35,10 @@ body{
   border: 1px solid #f0f0f0;
   max-height: 430px;
 }
+#tabs{
+  height: 90vh;
+  max-height: 430px;
+}
 
 .story-image{
   width:100%;

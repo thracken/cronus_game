@@ -11,7 +11,6 @@ xp = new Currency("Experience", 0)
 crystals = new Currency("Crystals", 0)
 
 
-
 #Player Stat Items
 class TeamMember
   constructor: (@name,main_stat) ->
@@ -99,9 +98,47 @@ first_run = ->
   if first_launch
     segment1.show()
 
+#Menu Navigation
+navigation = ->
+  $('#story_menu_link').click( ->
+    $('#story_tab').show()
+    $('#armor_tab').hide()
+    $('#team_tab').hide()
+    $('#missions_tab').hide()
+    $('#acheivements_tab').hide()
+  )
+  $('#armor_menu_link').click(->
+    $('#story_tab').hide()
+    $('#armor_tab').show()
+    $('#team_tab').hide()
+    $('#missions_tab').hide()
+    $('#acheivements_tab').hide()
+  )
+  $('#team_menu_link').click(->
+    $('#story_tab').hide()
+    $('#armor_tab').hide()
+    $('#team_tab').show()
+    $('#missions_tab').hide()
+    $('#acheivements_tab').hide()
+  )
+  $('#missions_menu_link').click(->
+    $('#story_tab').hide()
+    $('#armor_tab').hide()
+    $('#team_tab').hide()
+    $('#missions_tab').show()
+    $('#acheivements_tab').hide()
+  )
+  $('#acheivements_menu_link').click(->
+    $('#story_tab').hide()
+    $('#armor_tab').hide()
+    $('#team_tab').hide()
+    $('#missions_tab').hide()
+    $('#acheivements_tab').show()
+  )
 
 #Run on page load
 $(document).ready ->
+  navigation()
   first_run()
 
 ###
