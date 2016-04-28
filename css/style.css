@@ -9,7 +9,7 @@ body{
 
 #currency_bar{
   max-width: 960px;
-  background-color: #2196f3;
+  background: linear-gradient(to right, #000000 0%, #2196f3 50%, #000000 100%);
   color: #ffffff;
 
 }
@@ -58,23 +58,18 @@ body{
 .modal-body{
   padding: 0px;
 }
-#story-arrow-left{
+#story-arrow-left, #story-arrow-right{
   font-size: 3em;
   color: #ffffff;
   text-shadow: 0px 0px 10px #000000;
   position: absolute;
   top: 50%;
-  left: 0em;
   z-index: 2;
   cursor:pointer;
 }
+#story-arrow-left{
+  left: 0em;
+}
 #story-arrow-right{
-  font-size: 3em;
-  color: #ffffff;
-  text-shadow: 0px 0px 4px #000000;
-  position: absolute;
-  top: 50%;
   right: 0em;
-  z-index: 2;
-  cursor:pointer;
 }
