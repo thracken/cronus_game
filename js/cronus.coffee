@@ -3,7 +3,7 @@ class Currency
   constructor: (@name, @amount) ->
     @spend = (amount) ->
       @amount -= amount
-    @gain = ->
+    @gain = (amount) ->
       @amount += amount
 
 gold = new Currency("Gold", 0)
@@ -95,15 +95,6 @@ segment_links = (num) ->
 segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tube2.jpg","img/tube3.jpg","img/tube4.jpg","img/tube5.jpg","img/tube6.jpg","img/tube7.jpg","img/tube8.jpg","img/tube9.jpg"])
 
 
-#General Functions
-first_launch = ->
-  true
-
-first_run = ->
-  if first_launch
-    segment1.unlock()
-    segment1.show()
-
 #Menu Navigation
 navigation = ->
   $('#story_menu_link').click( ->
@@ -142,21 +133,34 @@ navigation = ->
     $('#acheivements_tab').show()
   )
 
+#General Functions
+first_launch = ->
+  false
+
+first_run = ->
+  if first_launch
+    segment1.unlock()
+    segment1.show()
+
+xp_tick = ->
+  xp.gain(1)
+  $('#xp_label').text("#{xp.amount} xp")
+
+
 #Run on page load
 $(document).ready ->
   navigation()
   first_run()
-
+  window.setInterval( ->
+    xp_tick()
+  , 1000)
 
 ###
-  window.setInterval( ->
-
-  , 1000)
 StorySegment
 TeamMember
 Mission
 Achievement
 Currency
 960x430 is standard size for main_image
-960x430 = 900
+960x430 = 900 x
 ###
