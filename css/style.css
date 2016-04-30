@@ -1,17 +1,17 @@
 body{
   padding-top: 50px;
 }
-
 #wrapper{
   max-width: 960px;
   background-color: #f0f0f0;
+  padding: 0;
 }
 
+/*Currency Bar*/
 #currency_bar{
   max-width: 960px;
   background: linear-gradient(to right, #000000 0%, #2196f3 50%, #000000 100%);
   color: #ffffff;
-
 }
 #currency_bar .navbar-brand{
   color: #ffffff;
@@ -30,21 +30,43 @@ body{
   color: #ffffff;
 }
 
+/*Main Image*/
+#main_image{
+  margin: 10px 0 0 0;
+}
 #main_image img{
   width: 100%;
   border: 1px solid #f0f0f0;
   max-height: 430px;
 }
+
+/*Experience Bar*/
+#xp_bar{
+  margin: 0;
+  height: 5px;
+  width: 100%;
+  border:1px solid #000000;
+  background-color: #00BB00;
+}
+
+/*Menu Bar*/
+#menu_bar{
+  margin: 0;
+}
+
+/*Content Tabs*/
 #tabs{
   height: 90vh;
   max-height: 430px;
+  padding: 0 15px;
 }
 
+
+/*Stort Segment Modal*/
 .story-image{
   width:100%;
   height: auto;
   position: relative;
-
 }
 .modal-dialog{
   margin: 50px auto;

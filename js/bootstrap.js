@@ -1174,10 +1174,13 @@ if (typeof jQuery === 'undefined') {
     this.scrollbarWidth = this.measureScrollbar()
   }
 
+
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
     this.originalBodyPad = document.body.style.paddingRight || ''
+    /* commented out to deal with annoying shift when modal pops open
     if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
+    */
   }
 
   Modal.prototype.resetScrollbar = function () {

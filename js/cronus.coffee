@@ -68,7 +68,7 @@ class StorySegment
                   </div>"+"
                 </div>"+"
               </div>"
-      $('body').append(html)
+      $('#story_tab').append(html)
       $('#story-segment-' + @num).modal({"show": "true", backdrop: "static"})
       #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
