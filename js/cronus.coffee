@@ -9,8 +9,10 @@ class Currency
 gold = new Currency("Gold", 0)
 xp = new Currency("Experience", 0)
 crystals = new Currency("Crystals", 0)
+skill_points = new Currency("Skill Points", 0)
 
-#Player Stat Items
+
+#TeamMemeber Functionality
 class TeamMember
   constructor: (@name,main_stat) ->
     @str = 1
@@ -18,9 +20,6 @@ class TeamMember
     @dex = 1
     @speed = 1
     @energy = 20
-
-    @skill_points = 0
-    @total_xp_gained = 0
 
     @hp = ->
       @fort * 10
@@ -35,9 +34,9 @@ class TeamMember
     @dodge = ->
       1 + ((@speed+@dex)/100)
     @lvl = ->
-      1
+      0
 
-#Story Items
+#Story Functionality
 class StorySegment
   @SegmentsCompleted = 0
   constructor: (@num, @name, @images) ->
@@ -138,7 +137,7 @@ first_launch = ->
   false
 
 first_run = ->
-  if first_launch
+  if first_launch()
     segment1.unlock()
     segment1.show()
 
@@ -147,7 +146,7 @@ xp_tick = ->
   $('#xp_label').text("#{xp.amount} xp")
 
 
-#Run on page load
+#Game Loop
 $(document).ready ->
   navigation()
   first_run()
