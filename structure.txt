@@ -1,0 +1,53 @@
+Game
+  Settings
+    Save/Load
+  Stats
+    Game Version Notes
+  Research/Hacking
+
+  Story Segments
+    progress
+    images
+    animations
+    name
+    number
+    unlock
+    show
+    interactions
+  Missions
+  Player
+    currencies
+      gold
+      crystals
+    Equipment
+      Consumables
+        # owned
+        spend/use (multiple)
+        Stone of brilliance
+  Achievements
+  Prestige
+    Hard Reset option
+    prestige points - OmniBoosts?
+  Team
+    Team Leader (Active)
+      > Abilities
+    Team Member 1
+    Team Member 2
+    Team stats
+    Inactive Team Members
+
+    Team Member
+      Class = Agility (Dexterity/Speed), Combat/Brawl, Tech, Flight/Aerial, Ranged
+      Base Stats = STR, DEX, FORT, SPD, energy
+      Derived Stats = HP, Crit, Crit Dmg, Dmg, Armor, dodge
+      level
+      Exp Gained
+      Skill Points - currency
+      Equipment Slots
+      Armor
+      Abilities
+        Cost(Gold)
+        Cost(Energy)
+        Level requirement
+        Cooldown
+        is currently active? (t/f)

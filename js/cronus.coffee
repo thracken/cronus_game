@@ -1,16 +1,29 @@
+
 #Currencies
 class Currency
-  constructor: (@name, @amount) ->
+  constructor: (@name, @amount, @symbol, @html_id) ->
     @spend = (amount) ->
       @amount -= amount
     @gain = (amount) ->
       @amount += amount
+    @unlock = ->
+      $('#currency_items').append("<li><a href='#' id='#{@html_id}' title='#{@name}'>#{@amount} #{@symbol}</a></li>")
 
-gold = new Currency("Gold", 0)
-xp = new Currency("Experience", 0)
-crystals = new Currency("Crystals", 0)
-skill_points = new Currency("Skill Points", 0)
+gold = new Currency("Gold", 0, "g", "gold_label")
+crystals = new Currency("Crystals", 0, "&loz;", "crystals_label")
+skill_points = new Currency("Skill Points", 0, "<span class='glyphicon glyphicon-star-empty'></span>", "skill_point_label")
 
+
+#Player Functionality
+class Player
+  constructor: ->
+    @level = ->
+      Math.floor(Math.log(@xp)/Math.log(1.21))
+    @xp = 0
+    @xp_gain = (amount) ->
+      @xp += amount
+
+p = new Player
 
 #TeamMemeber Functionality
 class TeamMember
@@ -134,16 +147,26 @@ navigation = ->
 
 #General Functions
 first_launch = ->
-  false
+  true
 
 first_run = ->
   if first_launch()
     segment1.unlock()
     segment1.show()
 
-xp_tick = ->
-  xp.gain(1)
-  $('#xp_label').text("#{xp.amount} xp")
+tick = ->
+  #XP tick
+  p.xp_gain(1)
+  $('#xp_label').text("#{p.xp} xp")
+  #Skill Point tick
+  if p.xp % 20 == 0
+    skill_points.gain(1)
+    $('')
+    if skill_points.amount == 1
+      skill_points.unlock()
+
+
+
 
 
 #Game Loop
@@ -151,7 +174,7 @@ $(document).ready ->
   navigation()
   first_run()
   window.setInterval( ->
-    xp_tick()
+    tick()
   , 1000)
 
 ###
