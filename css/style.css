@@ -1,38 +1,36 @@
-body{
-  padding-top: 50px;
-}
+body{}
 #wrapper{
   max-width: 960px;
   background-color: #f0f0f0;
   padding: 0;
 }
+.navbar{
+  margin-bottom: 0;
+}
+.row{
+  margin: 0;
+}
+@media (min-width: 768px){
+.navbar {
+    border-radius: 0px;
+}
+}
+
+/*Left/Top Half of Page*/
+#left_top{
+  padding: 0;
+}
 
 /*Currency Bar*/
-#currency_bar{
-  max-width: 960px;
-  background: linear-gradient(to right, #000000 0%, #2196f3 50%, #000000 100%);
-  color: #ffffff;
-}
-#currency_bar .navbar-brand{
-  color: #ffffff;
-}
-#currency_bar ul{
 
-}
-#currency_bar li{
-  float: right;
-  display:inline-block;
-}
-#currency_bar li a{
-  color: #ffffff;
-}
 #settings_icon{
-  color: #ffffff;
+  color: #fff;
+  margin: 0;
 }
 
 /*Main Image*/
 #main_image{
-  margin: 10px 0 0 0;
+  margin: 0;
   overflow: hidden;
 }
 #main_image img{
@@ -46,8 +44,6 @@ body{
 /*Experience Bar*/
 #xp_bar{
   margin: 0;
-  padding: 0;
-  height: 16px;
   width: 100%;
   border:1px solid #000000;
   background-color: #ffffff;
@@ -71,6 +67,11 @@ body{
   margin: 0 auto;
 }
 
+/*Right/Bottom half of page*/
+
+#right_bottom{
+  padding: 0;
+}
 
 /*Menu Bar*/
 #menu_bar{
