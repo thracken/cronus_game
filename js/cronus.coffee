@@ -1,54 +1,3 @@
-
-#Currencies
-class Currency
-  constructor: (@name, @amount, @symbol, @html_id) ->
-    @spend = (amount) ->
-      @amount -= amount
-    @gain = (amount) ->
-      @amount += amount
-    @unlock = ->
-      $('#currency_items').append("<li><a href='#' id='#{@html_id}' title='#{@name}'>#{@amount} #{@symbol}</a></li>")
-
-gold = new Currency("Gold", 0, "g", "gold_label")
-crystals = new Currency("Crystals", 0, "&loz;", "crystals_label")
-skill_points = new Currency("Skill Points", 0, "<span class='glyphicon glyphicon-star-empty'></span>", "skill_point_label")
-
-
-#Player Functionality
-class Player
-  constructor: ->
-    @level = ->
-      Math.floor(Math.log(@xp)/Math.log(1.21))
-    @xp = 0
-    @xp_gain = (amount) ->
-      @xp += amount
-
-p = new Player
-
-#TeamMemeber Functionality
-class TeamMember
-  constructor: (@name,main_stat) ->
-    @str = 1
-    @fort = 1
-    @dex = 1
-    @speed = 1
-    @energy = 20
-
-    @hp = ->
-      @fort * 10
-    @crit_dmg = ->
-      1 + ((@dex + @str)/100)
-    @base_dmg = ->
-      @str * 1.5
-    @armor = ->
-      @fort * 0.5
-    @crit_chance = ->
-      (@dex/100)
-    @dodge = ->
-      1 + ((@speed+@dex)/100)
-    @lvl = ->
-      0
-
 #Story Functionality
 class StorySegment
   @SegmentsCompleted = 0
@@ -105,6 +54,60 @@ segment_links = (num) ->
   setTimeout("#{name}.show()",0)
 
 segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tube2.jpg","img/tube3.jpg","img/tube4.jpg","img/tube5.jpg","img/tube6.jpg","img/tube7.jpg","img/tube8.jpg","img/tube9.jpg"])
+
+
+
+
+#Currencies
+class Currency
+  constructor: (@name, @amount, @symbol, @html_id) ->
+    @spend = (amount) ->
+      @amount -= amount
+    @gain = (amount) ->
+      @amount += amount
+    @unlock = ->
+      $('#currency_items').append("<li><a href='#' id='#{@html_id}' title='#{@name}'>#{@amount} #{@symbol}</a></li>")
+
+gold = new Currency("Gold", 0, "g", "gold_label")
+crystals = new Currency("Crystals", 0, "&loz;", "crystals_label")
+skill_points = new Currency("Skill Points", 0, "<span class='glyphicon glyphicon-star-empty'></span>", "skill_point_label")
+
+
+#Player Functionality
+class Player
+  constructor: ->
+    @level = ->
+      Math.floor(Math.log(@xp)/Math.log(1.21))
+    @xp = 0
+    @xp_gain = (amount) ->
+      @xp += amount
+
+p = new Player
+
+#TeamMemeber Functionality
+class TeamMember
+  constructor: (@name,main_stat) ->
+    @str = 1
+    @fort = 1
+    @dex = 1
+    @speed = 1
+    @energy = 20
+
+    @hp = ->
+      @fort * 10
+    @crit_dmg = ->
+      1 + ((@dex + @str)/100)
+    @base_dmg = ->
+      @str * 1.5
+    @armor = ->
+      @fort * 0.5
+    @crit_chance = ->
+      (@dex/100)
+    @dodge = ->
+      1 + ((@speed+@dex)/100)
+    @lvl = ->
+      0
+
 
 
 #Menu Navigation
