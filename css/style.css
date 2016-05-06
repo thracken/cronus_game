@@ -39,7 +39,6 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
   border: 1px solid #f0f0f0;
   max-height: 430px;
 }
