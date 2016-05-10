@@ -1,24 +1,41 @@
 #Story Functionality
+class StoryPage
+  constructor: (@image, @text) -> #add @animation
+
 class StorySegment
-  class StoryPage
-    constructor: (@name, @image, @animation) ->
-
-
   @SegmentsCompleted = 0
-  constructor: (@num, @name) ->
+  constructor: (@num, @name, @pages) ->
     progress = 0
     @completed = false
 
     @unlock = ->
+      segment_link = "<div><p><a href='#' class='segment_link' onclick='segment_links(" + @num + ")'>" + @num + " - " + @name + "</a></p></div>"
+      $('#story_tab').append(segment_link)
     @show = ->
 
-###
-    @unlock = ->
-      segment_link = "<div>"+
-                        "<p><a href='#' class='segment_link' onclick='segment_links(" + @num + ")'>" + @num + " - " + @name + "</a></p>"+
-                      "</div>"
-      $('#story_tab').append(segment_link)
+#Segment 1
+#Pages
+segment1_pages = [\
+story001_1 = new StoryPage('img/tube1.jpg', '<em>Wha... what? Where am i?</em>')
+, story001_2 = new StoryPage('img/tube2.jpg', '"Hey! Let\'s get you out of there."')
+, story001_3 = new StoryPage('img/tube3.jpg', '*Hnngh!*')
+, story001_4 = new StoryPage('img/tube4.jpg', 'And so on...')
+, story001_5 = new StoryPage('img/tube5.jpg', '')
+, story001_6 = new StoryPage('img/tube6.jpg', '')
+, story001_7 = new StoryPage('img/tube7.jpg', '')
+, story001_8 = new StoryPage('img/tube8.jpg', '')
+, story001_9 = new StoryPage('img/tube9.jpg', '')
+]
 
+segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
+
+
+
+segment_links = (num) ->
+  name = "segment" + num
+  setTimeout("#{name}.show()",0)
+
+###
     @show = ->
       html = "<div id='story-segment-1' class='container-fluid modal fade'>"+"
                 <div class='modal-dialog modal-lg' role='document'>"+"
@@ -57,11 +74,7 @@ class StorySegment
           @completed = true
       )
 
-segment_links = (num) ->
-  name = "segment" + num
-  setTimeout("#{name}.show()",0)
 
-segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tube2.jpg","img/tube3.jpg","img/tube4.jpg","img/tube5.jpg","img/tube6.jpg","img/tube7.jpg","img/tube8.jpg","img/tube9.jpg"])
 ###
 
 #Currencies
@@ -123,7 +136,6 @@ xp_tick = ->
 
 #Game Loop
 $(document).ready ->
-  navigation()
   first_run()
   window.setInterval( ->
     xp_tick()
