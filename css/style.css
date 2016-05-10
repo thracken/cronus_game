@@ -76,13 +76,22 @@ body{}
 /*Menu Bar*/
 #menu_bar{
   margin: 0;
+  border: none;
+  background-color: #e5e5e5;
+  min-height:inherit;
+}
+
+#menu_bar div{
+  padding: 0;
 }
 
 /*Content Tabs*/
 #tabs{
-  height: 90vh;
-  max-height: 430px;
+  min-height: 459px;
   padding: 0 15px;
+  background-color: #fff;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
 }
 
 
