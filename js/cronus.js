@@ -16,39 +16,50 @@ segment1_pages = [story001_0 = new StoryPage('img/tube0.jpg', '<em>Wha... what? 
 StorySegment = (function() {
   StorySegment.SegmentsCompleted = 0;
 
-  function StorySegment(num1, name1, pages) {
+  function StorySegment(num1, name, pages) {
     this.num = num1;
-    this.name = name1;
+    this.name = name;
     this.pages = pages;
-    this.progress = 0;
     this.completed = false;
+    this.progress = 0;
     this.unlock = function() {
-      var segment_link;
-      segment_link = "<div><p><a href='#' class='segment_link' onclick='segment_links(" + this.num + (")'> " + this.num + " - " + this.name + "</a></p></div>");
-      return $('#story_tab').append(segment_link);
+      var html, segment_link;
+      segment_link = "<div><p><a href='#' class='segment_link' id ='segment_link_" + this.num + "'> " + this.num + " - " + this.name + "</a></p></div>";
+      $('#story_tab').append(segment_link);
+      html = ("<div id='story-segment-" + this.num + "' class='story-segment modal fade'>") + "<div class='modal-dialog' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>" + ("<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>") + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + ("<img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[0].image + "' class='row' />") + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      return $('#wrapper').append(html);
     };
     this.show = function() {
-      var html;
-      html = ("<div id='story-segment-" + this.num + "' class='story-segment modal fade'>") + "<div class='modal-dialog' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>" + ("<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>") + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + ("<img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[this.progress].image + "' class='row' />") + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
-      $('#wrapper').append(html);
       $('#story-segment-' + this.num).modal({
         "show": "true",
         backdrop: "static"
       });
       $('#story-arrow-left').click((function(_this) {
         return function() {
-          _this.progress--;
-          return $("segment-" + _this.num + "-image").attr('src', "" + _this.pages[_this.progress].image);
+          if (_this.progress > 0) {
+            _this.progress -= 1;
+            return $('.story-image').attr('src', _this.pages[_this.progress].image);
+          }
         };
       })(this));
       $('#story-arrow-right').click((function(_this) {
         return function() {
-          _this.progress++;
-          return $("segment-" + _this.num + "-image").attr('src', "" + _this.pages[_this.progress].image);
+          if (_this.progress === _this.pages.length - 1) {
+            $('#story-close').click();
+            _this.completed = true;
+          }
+          if (_this.progress < _this.pages.length - 1) {
+            _this.progress += 1;
+            return $('.story-image').attr('src', _this.pages[_this.progress].image);
+          }
         };
       })(this));
       return $('#story-close').click((function(_this) {
-        return function() {};
+        return function() {
+          if (_this.progress === _this.pages.length - 1) {
+            return _this.completed = true;
+          }
+        };
       })(this));
     };
   }
@@ -60,14 +71,14 @@ StorySegment = (function() {
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages);
 
 segment_links = function(num) {
-  var name;
-  name = "segment" + num;
-  return setTimeout(name + ".show()", 0);
+  return $("segment_link_" + num).click(function() {
+    return setTimeout("segment" + num + ".show()", 0);
+  });
 };
 
 Currency = (function() {
-  function Currency(name1, amount1) {
-    this.name = name1;
+  function Currency(name, amount1) {
+    this.name = name;
     this.amount = amount1;
     this.spend = function(amount) {
       return this.amount -= amount;
@@ -90,8 +101,8 @@ crystals = new Currency("Crystals", 0);
 skill_points = new Currency("Skill Points", 0);
 
 TeamMember = (function() {
-  function TeamMember(name1, main_stat) {
-    this.name = name1;
+  function TeamMember(name, main_stat) {
+    this.name = name;
     this.str = 1;
     this.fort = 1;
     this.dex = 1;

@@ -18,13 +18,12 @@ segment1_pages = [
 class StorySegment
   @SegmentsCompleted = 0
   constructor: (@num, @name, @pages) ->
-    @progress = 0
     @completed = false
+    @progress = 0
 
     @unlock = ->
-      segment_link = "<div><p><a href='#' class='segment_link' onclick='segment_links("+ @num + ")'> #{@num} - #{@name}</a></p></div>"
+      segment_link = "<div><p><a href='#' class='segment_link' id ='segment_link_#{@num}'> #{@num} - #{@name}</a></p></div>"
       $('#story_tab').append(segment_link)
-    @show = ->
       html = "<div id='story-segment-#{@num}' class='story-segment modal fade'>"+"
                     <div class='modal-dialog' role='document'>"+"
                       <div class='modal-content'>"+"
@@ -34,7 +33,7 @@ class StorySegment
                         </div>"+"
                         <div class='modal-body'>"+"
                           <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>"+"
-                          <img id='segment-#{@num}-image' class='story-image' src='#{@pages[@progress].image}' class='row' />"+"
+                          <img id='segment-#{@num}-image' class='story-image' src='#{@pages[0].image}' class='row' />"+"
                           <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>"+"
                         </div>"+"
                         <div class='modal-footer'>"+"
@@ -42,28 +41,35 @@ class StorySegment
                       </div>"+"
                     </div>"+"
                   </div>"
-
       $('#wrapper').append(html)
+    @show = ->
       $('#story-segment-' + @num).modal({"show": "true", backdrop: "static"})
       #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
-        @progress--
-        $("segment-#{@num}-image").attr('src', "#{@pages[@progress].image}")
+        if @progress > 0
+          @progress -= 1
+          $('.story-image').attr('src', @pages[@progress].image)
       )
       $('#story-arrow-right').click( =>
-        @progress++
-        $("segment-#{@num}-image").attr('src', "#{@pages[@progress].image}")
+        if @progress == @pages.length - 1
+          $('#story-close').click()
+          @completed = true
+        if @progress < @pages.length - 1
+          @progress += 1
+          $('.story-image').attr('src', @pages[@progress].image)
       )
       $('#story-close').click( =>
-
+        if @progress == @pages.length - 1
+          @completed = true
       )
 
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
 
 #Segment Functions
 segment_links = (num) ->
-  name = "segment" + num
-  setTimeout("#{name}.show()",0)
+  $("segment_link_#{num}").click( ->
+    setTimeout("segment#{num}.show()", 0)
+  )
 
 #Currencies
 class Currency
