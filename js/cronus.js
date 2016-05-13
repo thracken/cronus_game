@@ -139,7 +139,7 @@ TeamMember = (function() {
 })();
 
 first_launch = function() {
-  return true;
+  return false;
 };
 
 first_run = function() {

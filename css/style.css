@@ -20,11 +20,18 @@ body{}
 #left_top{
   padding: 0;
 }
+#currency_bar{
+  height:50px;
+}
 
 /*Currency Bar*/
 #settings_icon{
   color: #fff;
   margin: 0;
+  position:absolute;
+  top: 35%;
+  right: 15px;
+  cursor:pointer;
 }
 
 /*Main Image*/
@@ -87,10 +94,15 @@ body{}
 /*Content Tabs*/
 #tabs{
   min-height: 430px;
-  padding: 0 15px;
+  padding: 15px;
   background-color: #fff;
   border-left: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
+}
+.segment_link{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #337ab7;
 }
 
 

@@ -115,7 +115,7 @@ class TeamMember
 
 #General Functions
 first_launch = ->
-  true
+  false
 
 first_run = ->
   if first_launch()
