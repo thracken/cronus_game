@@ -16,13 +16,14 @@ segment1_pages = [
 ]
 
 class StorySegment
-  @SegmentsCompleted = 0
+  @total_segments = 0
+  @segments_completed = 0
+
   constructor: (@num, @name, @pages) ->
     @completed = false
-    @progress = 0
 
     @unlock = ->
-      segment_link = "<div><p><a href='#' class='segment_link' id ='segment_link_#{@num}'> #{@num} - #{@name}</a></p></div>"
+      segment_link = "<div><p id ='segment_link_#{@num}' class='segment_link'>#{@num} - #{@name}</p></div>"
       $('#story_tab').append(segment_link)
       html = "<div id='story-segment-#{@num}' class='story-segment modal fade'>"+"
                     <div class='modal-dialog' role='document'>"+"
@@ -42,34 +43,36 @@ class StorySegment
                     </div>"+"
                   </div>"
       $('#wrapper').append(html)
+      $("#segment_link_#{@num}").click( =>
+        setTimeout("segment#{@num}.show()", 0)
+      )
+
     @show = ->
-      $('#story-segment-' + @num).modal({"show": "true", backdrop: "static"})
+      progress = 0
+      $("#story-segment-#{@num}").modal({"show": "true", backdrop: "static"})
       #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
-        if @progress > 0
-          @progress -= 1
-          $('.story-image').attr('src', @pages[@progress].image)
+        if progress > 0
+          progress -= 1
+          $('.story-image').attr('src', @pages[progress].image)
       )
       $('#story-arrow-right').click( =>
-        if @progress == @pages.length - 1
+        if progress == @pages.length - 1
           $('#story-close').click()
           @completed = true
-        if @progress < @pages.length - 1
-          @progress += 1
-          $('.story-image').attr('src', @pages[@progress].image)
+        if progress < @pages.length - 1
+          progress += 1
+          $('.story-image').attr('src', @pages[progress].image)
       )
       $('#story-close').click( =>
-        if @progress == @pages.length - 1
+        if progress == @pages.length - 1
           @completed = true
       )
 
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
 
-#Segment Functions
-segment_links = (num) ->
-  $("segment_link_#{num}").click( ->
-    setTimeout("segment#{num}.show()", 0)
-  )
+
+
 
 #Currencies
 class Currency
