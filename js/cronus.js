@@ -31,7 +31,8 @@ StorySegment = (function() {
       $('#wrapper').append(html);
       return $("#segment_link_" + this.num).click((function(_this) {
         return function() {
-          return setTimeout("segment" + _this.num + ".show()", 0);
+          setTimeout("segment" + _this.num + ".show()", 0);
+          return _this.attr("style", "display:block;");
         };
       })(this));
     };

@@ -22,7 +22,6 @@ body{}
 }
 
 /*Currency Bar*/
-
 #settings_icon{
   color: #fff;
   margin: 0;
@@ -78,16 +77,16 @@ body{}
   margin: 0;
   border: none;
   background-color: #e5e5e5;
-  min-height:inherit;
+  height: 50px;
 }
 
-#menu_bar div{
-  padding: 0;
+#menu_bar_items{
+  padding: 9px 0 0 0;
 }
 
 /*Content Tabs*/
 #tabs{
-  min-height: 459px;
+  min-height: 430px;
   padding: 0 15px;
   background-color: #fff;
   border-left: 1px solid #e5e5e5;

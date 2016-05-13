@@ -45,6 +45,7 @@ class StorySegment
       $('#wrapper').append(html)
       $("#segment_link_#{@num}").click( =>
         setTimeout("segment#{@num}.show()", 0)
+        this.attr("style","display:block;")
       )
 
     @show = ->
