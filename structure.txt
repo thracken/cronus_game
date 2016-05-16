@@ -6,14 +6,16 @@ Game
   Research/Hacking
 
   Story Segments
+    story page
+      images
+      animations
     progress
-    images
-    animations
+    completed
     name
     number
     unlock
     show
-    interactions
+
   Missions
   Player
     currencies

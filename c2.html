@@ -12,74 +12,58 @@
 </head>
 
 <body>
-<div id="wrapper" class="container">
+<div id="wrapper" class="container-fluid">
+<div class="row">
+  <div id="left_top" class="col-xs-6 col-md-12">
+    <nav id="currency_bar" class="row navbar navbar-default navbar-inverse">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">The Cronus Project</a>
+      </div>
+      <div id="currency_items" class="">
+        <span id="settings_icon" class="glyphicon glyphicon-cog" title="Settings"></span>
+      </div>
+    </nav>
 
-<nav class="row navbar navbar-default navbar-fixed-top">
-  <div id="currency_bar" class="container">
-    <div class="navbar-header navbar-left hidden-xs col-sm-6 col-md=6">
-      <a class="navbar-brand" href="#">The Cronus Project</a>
+    <div id="xp_bar" class="row">
+      <p id="current_level">0</p>
+      <p id="next_level">1</p>
+      <p id="xp_label">0 xp</p>
+    </div><!--xp_bar-->
+
+    <div id="main_image" class="row">
+    <img src="img/tubes.png">
+    </div><!--main_image-->
+  </div><!--left_top-->
+
+  <div id="right_bottom" class="col-xs-6 col-md-12">
+    <nav id="menu_bar" class="row navbar navbar-default">
+        <div id="menu_bar_items">
+          <ul role="tablist" class="nav nav-tabs">
+            <li role="presentation" class="active visible-lg hidden-md"><a href="#story_tab" role="tab" data-toggle="tab">Story</a></li>
+            <li role="presentation" class="visble-lg hidden-md hidden-sm hidden-xs"><a href="#armor_tab" role="tab" data-toggle="tab">Armor</a></li>
+            <li role="presentation" class="visble-lg hidden-md hidden-sm hidden-xs"><a href="#team_tab" role="tab" data-toggle="tab">Team</a></li>
+            <li role="presentation" class="visble-lg hidden-md hidden-sm hidden-xs"><a href="#missions_tab" role="tab" data-toggle="tab">Missions</a></li>
+            <li role="presentation" class="visble-lg hidden-md hidden-sm hidden-xs"><a href="#acheivements_tab" role="tab" data-toggle="tab">Acheivements</a></li>
+
+            <li role="presentation" class="active hidden-lg"><a href="#story_tab" role="tab" data-toggle="tab" title="Story"><span class="glyphicon glyphicon-book"></span></a></li>
+            <li role="presentation" class="hidden-lg"><a href="#armor_tab" role="tab" data-toggle="tab" title="Armor"><span class="glyphicon glyphicon-screenshot"></span></a></li>
+            <li role="presentation" class="hidden-lg"><a href="#team_tab" role="tab" data-toggle="tab" title="Team"><span class="glyphicon glyphicon-user"></span></a></li>
+            <li role="presentation" class="hidden-lg"><a href="#missions_tab" role="tab" data-toggle="tab" title="Missions"><span class="glyphicon glyphicon-globe"></span></a></li>
+            <li role="presentation" class="hidden-lg"><a href="#acheivements_tab" role="tab" data-toggle="tab" title="Achievements"><span class="glyphicon glyphicon-star"></span></a></li>
+          </ul>
+        </div>
+    </nav><!--menu_bar-->
+
+    <div id="tabs" class="tab-content">
+      <div id="story_tab" role="tabpanel" class="tab-pane active fade in"></div>
+      <div id="armor_tab" role="tabpanel" class="tab-pane fade">Armor</div>
+      <div id="team_tab" role="tabpanel" class="tab-pane fade">Team</div>
+      <div id="missions_tab" role="tabpanel" class="tab-pane fade">Missions</div>
+      <div id="acheivements_tab" role="tabpanel" class="tab-pane fade">Acheivements</div>
     </div>
-    <ul id="currency_items" class="nav navbar-nav navbar-right col-xs-12 col-sm-6 col-md=6">
-      <li id="settings_icon"><a href="#"><span class="glyphicon glyphicon-cog navbar-btn" title="Settings"></span></a></li>
-    </ul>
-  </div>
-</nav>
+  </div><!--right_bottom-->
 
-<div id="main_image" class="clearfix row">
-<img src="img/tubes.png">
-</div>
-
-<div id="xp_bar" class="row">
-  <p id="current_level">0</p>
-  <p id="next_level">1</p>
-  <p id="xp_label">0 xp</p>
-
-</div>
-
-<nav id="menu_bar" class="row navbar navbar-default">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand visible-xs" href="#">Menu</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav" id="nav-links">
-        <li id="story_menu_link"><a href="#">Story</a></li>
-        <li id="armor_menu_link"><a href="#">Armor</a></li>
-        <li id="team_menu_link"><a href="#">Team</a></li>
-        <li id="missions_menu_link"><a href="#">Missions</a></li>
-        <li id="acheivements_menu_link"><a href="#">Acheivements</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-</nav>
-
-
-<div id="tabs">
-<div id="armor_tab" style="display: none;">
-  This is the armor tab.
-</div><!--armor_tab-->
-
-<div id="story_tab">
-</div><!--story_tab-->
-
-<div id="team_tab" style="display: none;">
-  This is the Team tab.
-</div><!--team_tab-->
-
-<div id="missions_tab" style="display: none;">
-  This is the missions tab.
-</div><!--missions_tab-->
-
-<div id="acheivements_tab" style="display: none;">
-  This is the acheivements tab.
-</div><!--acheivements_tab-->
-</div><!--tabs-->
-
-</div><!--#wrapper-->
+</div><!--row-->
+</div><!--wrapper-->
 </body>
 </html>

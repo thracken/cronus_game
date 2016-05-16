@@ -1,88 +1,93 @@
-#Story Functionality
+#Story Segments
+class StoryPage
+  constructor: (@image, @text) -> #add @animation
+
+#Segment 1 Pages
+segment1_pages = [
+  story001_0 = new StoryPage('img/tube0.jpg', '<em>Wha... what? Where am i?</em>')
+  story001_1 = new StoryPage('img/tube1.jpg', '"Hey! Let\'s get you out of there."')
+  story001_2 = new StoryPage('img/tube2.jpg', '*Hnngh!*')
+  story001_3 = new StoryPage('img/tube3.jpg', 'And so on...')
+  story001_4 = new StoryPage('img/tube4.jpg', '')
+  story001_5 = new StoryPage('img/tube5.jpg', '')
+  story001_6 = new StoryPage('img/tube6.jpg', '')
+  story001_7 = new StoryPage('img/tube7.jpg', '')
+  story001_8 = new StoryPage('img/tube8.jpg', '')
+]
+
 class StorySegment
-  @SegmentsCompleted = 0
-  constructor: (@num, @name, @images) ->
-    progression = 0
+  @total_segments = 0
+  @segments_completed = 0
+
+  constructor: (@num, @name, @pages) ->
     @completed = false
 
     @unlock = ->
-      segment_link = "<div>"+
-                        "<p><a href='#' class='segment_link' onclick='segment_links(" + @num + ")'>" + @num + " - " + @name + "</a></p>"+
-                      "</div>"
+      segment_link = "<div><p id ='segment_link_#{@num}' class='segment_link'>#{@num} - #{@name}</p></div>"
       $('#story_tab').append(segment_link)
+      html = "<div id='story-segment-#{@num}' class='story-segment modal fade'>"+"
+                    <div class='modal-dialog' role='document'>"+"
+                      <div class='modal-content'>"+"
+                        <div class='modal-header'>"+"
+                          <button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>"+"
+                          <h4 class='modal-title' id='myModalLabel'>#{@num} - #{@name}</h4>"+"
+                        </div>"+"
+                        <div class='modal-body'>"+"
+                          <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>"+"
+                          <img id='segment-#{@num}-image' class='story-image' src='#{@pages[0].image}' class='row' />"+"
+                          <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>"+"
+                        </div>"+"
+                        <div class='modal-footer'>"+"
+                        </div>"+"
+                      </div>"+"
+                    </div>"+"
+                  </div>"
+      $('#wrapper').append(html)
+      $("#segment_link_#{@num}").click( =>
+        setTimeout("segment#{@num}.show()", 0)
+        this.attr("style","display:block;")
+      )
 
     @show = ->
-      html = "<div id='story-segment-1' class='container-fluid modal fade'>"+"
-                <div class='modal-dialog modal-lg' role='document'>"+"
-                  <div class='modal-content'>"+"
-                    <div class='modal-header'>"+"
-                      <button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"+"
-                      <h4 class='modal-title' id='myModalLabel'>" + @num + " - " + @name + "</h4>"+"
-                    </div>"+"
-                    <div class='modal-body'>"+"
-                      <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>"+"
-                      <img class='story-image' src=" + @images[progression] + " class='row' />"+"
-                      <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>"+"
-                    </div>"+"
-                    <div class='modal-footer'>"+"
-                    </div>"+"
-                  </div>"+"
-                </div>"+"
-              </div>"
-      $('#story_tab').append(html)
-      $('#story-segment-' + @num).modal({"show": "true", backdrop: "static"})
+      progress = 0
+      $("#story-segment-#{@num}").modal({"show": "true", backdrop: "static"})
       #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
-          progression -= 1
-          $('.story-image').attr('src', @images[progression])
+        if progress > 0
+          progress -= 1
+          $('.story-image').attr('src', @pages[progress].image)
       )
       $('#story-arrow-right').click( =>
-          if progression == @images.length - 1
-            $('#story-close').click()
-            @completed = true
-          if progression < @images.length - 1
-            progression += 1
-            $('.story-image').attr('src', @images[progression])
+        if progress == @pages.length - 1
+          $('#story-close').click()
+          @completed = true
+        if progress < @pages.length - 1
+          progress += 1
+          $('.story-image').attr('src', @pages[progress].image)
       )
       $('#story-close').click( =>
-        if progression == @images.length - 1
+        if progress == @pages.length - 1
           @completed = true
       )
 
-segment_links = (num) ->
-  name = "segment" + num
-  setTimeout("#{name}.show()",0)
-
-segment1 = new StorySegment(1, "Let's get out of here...", ["img/tube1.jpg","img/tube2.jpg","img/tube3.jpg","img/tube4.jpg","img/tube5.jpg","img/tube6.jpg","img/tube7.jpg","img/tube8.jpg","img/tube9.jpg"])
+segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
 
 
 
 
 #Currencies
 class Currency
-  constructor: (@name, @amount, @symbol, @html_id) ->
+  constructor: (@name, @amount) ->
     @spend = (amount) ->
       @amount -= amount
     @gain = (amount) ->
       @amount += amount
-    @unlock = ->
-      $('#currency_items').append("<li><a href='#' id='#{@html_id}' title='#{@name}'>#{@amount} #{@symbol}</a></li>")
 
-gold = new Currency("Gold", 0, "g", "gold_label")
-crystals = new Currency("Crystals", 0, "&loz;", "crystals_label")
-skill_points = new Currency("Skill Points", 0, "<span class='glyphicon glyphicon-star-empty'></span>", "skill_point_label")
+gold = new Currency("Gold", 0)
+xp = new Currency("Experience", 0)
+crystals = new Currency("Crystals", 0)
+skill_points = new Currency("Skill Points", 0)
 
-
-#Player Functionality
-class Player
-  constructor: ->
-    @level = ->
-      Math.floor(Math.log(@xp)/Math.log(1.21))
-    @xp = 0
-    @xp_gain = (amount) ->
-      @xp += amount
-
-p = new Player
 
 #TeamMemeber Functionality
 class TeamMember
@@ -108,84 +113,23 @@ class TeamMember
     @lvl = ->
       0
 
-
-
-#Menu Navigation
-navigation = ->
-  $('#story_menu_link').click( ->
-    $('#story_tab').show()
-    $('#armor_tab').hide()
-    $('#team_tab').hide()
-    $('#missions_tab').hide()
-    $('#acheivements_tab').hide()
-  )
-  $('#armor_menu_link').click(->
-    $('#story_tab').hide()
-    $('#armor_tab').show()
-    $('#team_tab').hide()
-    $('#missions_tab').hide()
-    $('#acheivements_tab').hide()
-  )
-  $('#team_menu_link').click(->
-    $('#story_tab').hide()
-    $('#armor_tab').hide()
-    $('#team_tab').show()
-    $('#missions_tab').hide()
-    $('#acheivements_tab').hide()
-  )
-  $('#missions_menu_link').click(->
-    $('#story_tab').hide()
-    $('#armor_tab').hide()
-    $('#team_tab').hide()
-    $('#missions_tab').show()
-    $('#acheivements_tab').hide()
-  )
-  $('#acheivements_menu_link').click(->
-    $('#story_tab').hide()
-    $('#armor_tab').hide()
-    $('#team_tab').hide()
-    $('#missions_tab').hide()
-    $('#acheivements_tab').show()
-  )
-
 #General Functions
 first_launch = ->
-  true
+  false
 
 first_run = ->
   if first_launch()
     segment1.unlock()
     segment1.show()
 
-tick = ->
-  #XP tick
-  p.xp_gain(1)
-  $('#xp_label').text("#{p.xp} xp")
-  #Skill Point tick
-  if p.xp % 20 == 0
-    skill_points.gain(1)
-    $('')
-    if skill_points.amount == 1
-      skill_points.unlock()
-
-
-
+xp_tick = ->
+  xp.gain(1)
+  $('#xp_label').text("#{xp.amount} xp")
 
 
 #Game Loop
 $(document).ready ->
-  navigation()
   first_run()
   window.setInterval( ->
-    tick()
+    xp_tick()
   , 1000)
-
-###
-StorySegment
-TeamMember
-Mission
-Achievement
-Currency
-960x430 is standard size for main_image
-960x430 = 900 x
-###
