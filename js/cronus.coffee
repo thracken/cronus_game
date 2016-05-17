@@ -1,3 +1,4 @@
+#Story Owned Items
 #Story Segments
 class StoryPage
   constructor: (@image, @text) -> #add @animation
@@ -78,8 +79,7 @@ segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
 
 
 
-
-
+#Player Owned Items
 #Currencies
 class Currency
   constructor: ->
@@ -89,10 +89,24 @@ class Currency
     @gain = (amount) ->
       @amount += amount
 
-gold = new Currency("Gold", 0)
-xp = new Currency("Experience", 0)
-crystals = new Currency("Crystals", 0)
+gold = new Currency
+crystals = new Currency
 
+#Equipment
+class Equipment
+  constructor: ->
+
+
+
+
+#Acheivements
+class Acheivement
+  constructor: (@name, @unlock_condition) ->
+
+
+
+
+#Team Owned Items
 #Team
 class Team
   constructor: ->
@@ -105,7 +119,10 @@ class TeamMember
     @total_xp_earned = 0
     @level = 0
     @active = false
-    @skill_points = new Currency("Skill Points", 0)
+    @skill_points = new Currency
+    @equipment = []
+    @armor = []
+    @abilities = []
     switch team_class
       when "Balance"
         @strength = 5
@@ -211,6 +228,12 @@ class TeamMember
         @damage = ->
           @energy * main_stat_multiplier
 
+class TeamAbility
+  constructor: (@name, @energy_cost, @upgrade_cost, @cooldown, @level_required) ->
+
+class TeamEquipment
+
+class TeamArmor
 
 
 #General Functions

@@ -45,7 +45,7 @@ Game
       Derived Stats = HP, Crit, Crit Dmg, Dmg, Armor, dodge
       Exp Gained
       level
-      active
+      active (t/f)
       Skill Points - currency
       Equipment Slots
       Armor
@@ -54,4 +54,3 @@ Game
         Cost(Energy)
         Level requirement
         Cooldown
-        is currently active? (t/f)
