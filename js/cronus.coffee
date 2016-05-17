@@ -82,7 +82,8 @@ segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
 
 #Currencies
 class Currency
-  constructor: (@name, @amount) ->
+  constructor: ->
+    @amount = 0
     @spend = (amount) ->
       @amount -= amount
     @gain = (amount) ->
@@ -91,7 +92,6 @@ class Currency
 gold = new Currency("Gold", 0)
 xp = new Currency("Experience", 0)
 crystals = new Currency("Crystals", 0)
-skill_points = new Currency("Skill Points", 0)
 
 #Team
 class Team
@@ -101,9 +101,11 @@ class Team
 #TeamMemeber Functionality
 class TeamMember
   constructor: (@name,team_class) ->
+    main_stat_multiplier = 1.5
     @total_xp_earned = 0
     @level = 0
     @active = false
+    @skill_points = new Currency("Skill Points", 0)
     switch team_class
       when "Balance"
         @strength = 5
@@ -195,19 +197,19 @@ class TeamMember
     switch @main_stat
       when "strength"
         @damage = ->
-          @strength * 1.5
+          @strength * main_stat_multiplier
       when "fortitude"
         @damage = ->
-          @fortitude * 1.5
+          @fortitude * main_stat_multiplier
       when "dexterity"
         @damage = ->
-          @dexterity * 1.5
+          @dexterity * main_stat_multiplier
       when "speed"
         @damage = ->
-          @speed * 1.5
+          @speed * main_stat_multiplier
       when "energy"
         @damage = ->
-          @energy * 1.5
+          @energy * main_stat_multiplier
 
 
 
