@@ -9,11 +9,11 @@ segment1_pages = [
   story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*')
   story001_3 = new StoryPage('img/intro3.jpg', 'And so on...')
   story001_4 = new StoryPage('img/intro4.jpg', 'Text Here')
-  story001_5 = new StoryPage('img/intro5.jpg', 'Text Here')
-  story001_6 = new StoryPage('img/intro6.jpg', 'Text Here')
-  story001_7 = new StoryPage('img/intro7.jpg', 'Text Here')
-  story001_8 = new StoryPage('img/intro8.jpg', 'Text Here')
-  story001_8 = new StoryPage('img/intro9.jpg', 'Text Here')
+  story001_5 = new StoryPage('img/intro5.jpg', 'And Here')
+  story001_6 = new StoryPage('img/intro6.jpg', 'Also Here')
+  story001_7 = new StoryPage('img/intro7.jpg', 'Here Too')
+  story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here')
+  story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here')
 ]
 
 class StorySegment
@@ -47,7 +47,6 @@ class StorySegment
       $('#wrapper').append(html)
       $("#segment_link_#{@num}").click( =>
         setTimeout("segment#{@num}.show()", 0)
-        this.attr("style","display:block;")
       )
 
     @show = ->

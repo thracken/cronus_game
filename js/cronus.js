@@ -11,7 +11,7 @@ StoryPage = (function() {
 
 })();
 
-segment1_pages = [story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>'), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."'), story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*'), story001_3 = new StoryPage('img/intro3.jpg', 'And so on...'), story001_4 = new StoryPage('img/intro4.jpg', 'Text Here'), story001_5 = new StoryPage('img/intro5.jpg', 'Text Here'), story001_6 = new StoryPage('img/intro6.jpg', 'Text Here'), story001_7 = new StoryPage('img/intro7.jpg', 'Text Here'), story001_8 = new StoryPage('img/intro8.jpg', 'Text Here'), story001_8 = new StoryPage('img/intro9.jpg', 'Text Here')];
+segment1_pages = [story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>'), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."'), story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*'), story001_3 = new StoryPage('img/intro3.jpg', 'And so on...'), story001_4 = new StoryPage('img/intro4.jpg', 'Text Here'), story001_5 = new StoryPage('img/intro5.jpg', 'And Here'), story001_6 = new StoryPage('img/intro6.jpg', 'Also Here'), story001_7 = new StoryPage('img/intro7.jpg', 'Here Too'), story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here'), story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here')];
 
 StorySegment = (function() {
   StorySegment.total_segments = 0;
@@ -31,8 +31,7 @@ StorySegment = (function() {
       $('#wrapper').append(html);
       return $("#segment_link_" + this.num).click((function(_this) {
         return function() {
-          setTimeout("segment" + _this.num + ".show()", 0);
-          return _this.attr("style", "display:block;");
+          return setTimeout("segment" + _this.num + ".show()", 0);
         };
       })(this));
     };
