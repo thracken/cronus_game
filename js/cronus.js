@@ -11,7 +11,7 @@ StoryPage = (function() {
 
 })();
 
-segment1_pages = [story001_0 = new StoryPage('img/tube0.jpg', '<em>Wha... what? Where am i?</em>'), story001_1 = new StoryPage('img/tube1.jpg', '"Hey! Let\'s get you out of there."'), story001_2 = new StoryPage('img/tube2.jpg', '*Hnngh!*'), story001_3 = new StoryPage('img/tube3.jpg', 'And so on...'), story001_4 = new StoryPage('img/tube4.jpg', ''), story001_5 = new StoryPage('img/tube5.jpg', ''), story001_6 = new StoryPage('img/tube6.jpg', ''), story001_7 = new StoryPage('img/tube7.jpg', ''), story001_8 = new StoryPage('img/tube8.jpg', '')];
+segment1_pages = [story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>'), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."'), story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*'), story001_3 = new StoryPage('img/intro3.jpg', 'And so on...'), story001_4 = new StoryPage('img/intro4.jpg', 'Text Here'), story001_5 = new StoryPage('img/intro5.jpg', 'Text Here'), story001_6 = new StoryPage('img/intro6.jpg', 'Text Here'), story001_7 = new StoryPage('img/intro7.jpg', 'Text Here'), story001_8 = new StoryPage('img/intro8.jpg', 'Text Here'), story001_8 = new StoryPage('img/intro9.jpg', 'Text Here')];
 
 StorySegment = (function() {
   StorySegment.total_segments = 0;
@@ -27,7 +27,7 @@ StorySegment = (function() {
       var html, segment_link;
       segment_link = "<div><p id ='segment_link_" + this.num + "' class='segment_link'>" + this.num + " - " + this.name + "</p></div>";
       $('#story_tab').append(segment_link);
-      html = ("<div id='story-segment-" + this.num + "' class='story-segment modal fade'>") + "<div class='modal-dialog' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>" + ("<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>") + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + ("<img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[0].image + "' class='row' />") + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      html = ("<div id='story-segment-" + this.num + "' class='story-segment modal fade'>") + "<div class='modal-dialog' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>" + ("<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>") + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + ("<img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[0].image + "' class='row' />") + ("<div id='segment-" + this.num + "-text' class='segment-text'>" + this.pages[0].text + "</div>") + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
       $('#wrapper').append(html);
       return $("#segment_link_" + this.num).click((function(_this) {
         return function() {
@@ -47,7 +47,8 @@ StorySegment = (function() {
         return function() {
           if (progress > 0) {
             progress -= 1;
-            return $('.story-image').attr('src', _this.pages[progress].image);
+            $('.story-image').attr('src', _this.pages[progress].image);
+            return $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
           }
         };
       })(this));
@@ -59,7 +60,8 @@ StorySegment = (function() {
           }
           if (progress < _this.pages.length - 1) {
             progress += 1;
-            return $('.story-image').attr('src', _this.pages[progress].image);
+            $('.story-image').attr('src', _this.pages[progress].image);
+            return $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
           }
         };
       })(this));
@@ -139,7 +141,7 @@ TeamMember = (function() {
 })();
 
 first_launch = function() {
-  return false;
+  return true;
 };
 
 first_run = function() {

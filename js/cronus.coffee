@@ -4,15 +4,16 @@ class StoryPage
 
 #Segment 1 Pages
 segment1_pages = [
-  story001_0 = new StoryPage('img/tube0.jpg', '<em>Wha... what? Where am i?</em>')
-  story001_1 = new StoryPage('img/tube1.jpg', '"Hey! Let\'s get you out of there."')
-  story001_2 = new StoryPage('img/tube2.jpg', '*Hnngh!*')
-  story001_3 = new StoryPage('img/tube3.jpg', 'And so on...')
-  story001_4 = new StoryPage('img/tube4.jpg', '')
-  story001_5 = new StoryPage('img/tube5.jpg', '')
-  story001_6 = new StoryPage('img/tube6.jpg', '')
-  story001_7 = new StoryPage('img/tube7.jpg', '')
-  story001_8 = new StoryPage('img/tube8.jpg', '')
+  story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>')
+  story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."')
+  story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*')
+  story001_3 = new StoryPage('img/intro3.jpg', 'And so on...')
+  story001_4 = new StoryPage('img/intro4.jpg', 'Text Here')
+  story001_5 = new StoryPage('img/intro5.jpg', 'Text Here')
+  story001_6 = new StoryPage('img/intro6.jpg', 'Text Here')
+  story001_7 = new StoryPage('img/intro7.jpg', 'Text Here')
+  story001_8 = new StoryPage('img/intro8.jpg', 'Text Here')
+  story001_8 = new StoryPage('img/intro9.jpg', 'Text Here')
 ]
 
 class StorySegment
@@ -35,6 +36,7 @@ class StorySegment
                         <div class='modal-body'>"+"
                           <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>"+"
                           <img id='segment-#{@num}-image' class='story-image' src='#{@pages[0].image}' class='row' />"+"
+                          <div id='segment-#{@num}-text' class='segment-text'>#{@pages[0].text}</div>"+"
                           <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>"+"
                         </div>"+"
                         <div class='modal-footer'>"+"
@@ -56,6 +58,7 @@ class StorySegment
         if progress > 0
           progress -= 1
           $('.story-image').attr('src', @pages[progress].image)
+          $("#segment-#{@num}-text").text(@pages[progress].text)
       )
       $('#story-arrow-right').click( =>
         if progress == @pages.length - 1
@@ -64,6 +67,7 @@ class StorySegment
         if progress < @pages.length - 1
           progress += 1
           $('.story-image').attr('src', @pages[progress].image)
+          $("#segment-#{@num}-text").text(@pages[progress].text)
       )
       $('#story-close').click( =>
         if progress == @pages.length - 1
@@ -115,7 +119,7 @@ class TeamMember
 
 #General Functions
 first_launch = ->
-  false
+  true
 
 first_run = ->
   if first_launch()
