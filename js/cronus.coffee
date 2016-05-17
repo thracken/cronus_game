@@ -2,20 +2,6 @@
 class StoryPage
   constructor: (@image, @text) -> #add @animation
 
-#Segment 1 Pages
-segment1_pages = [
-  story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>')
-  story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."')
-  story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*')
-  story001_3 = new StoryPage('img/intro3.jpg', 'And so on...')
-  story001_4 = new StoryPage('img/intro4.jpg', 'Text Here')
-  story001_5 = new StoryPage('img/intro5.jpg', 'And Here')
-  story001_6 = new StoryPage('img/intro6.jpg', 'Also Here')
-  story001_7 = new StoryPage('img/intro7.jpg', 'Here Too')
-  story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here')
-  story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here')
-]
-
 class StorySegment
   @total_segments = 0
   @segments_completed = 0
@@ -73,7 +59,23 @@ class StorySegment
           @completed = true
       )
 
+#Story Segment Creation
+#Segment 1
+segment1_pages = [
+  story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>')
+  story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."')
+  story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*')
+  story001_3 = new StoryPage('img/intro3.jpg', 'And so on...')
+  story001_4 = new StoryPage('img/intro4.jpg', 'Text Here')
+  story001_5 = new StoryPage('img/intro5.jpg', 'And Here')
+  story001_6 = new StoryPage('img/intro6.jpg', 'Also Here')
+  story001_7 = new StoryPage('img/intro7.jpg', 'Here Too')
+  story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here')
+  story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here')
+]
+
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
+
 
 
 
@@ -91,30 +93,123 @@ xp = new Currency("Experience", 0)
 crystals = new Currency("Crystals", 0)
 skill_points = new Currency("Skill Points", 0)
 
+#Team
+class Team
+  constructor: ->
+
 
 #TeamMemeber Functionality
 class TeamMember
-  constructor: (@name,main_stat) ->
-    @str = 1
-    @fort = 1
-    @dex = 1
-    @speed = 1
-    @energy = 20
-
+  constructor: (@name,team_class) ->
+    @total_xp_earned = 0
+    @level = 0
+    @active = false
+    switch team_class
+      when "Balance"
+        @strength = 5
+        @fortitude = 5
+        @dexterity = 5
+        @speed = 5
+        @energy = 5
+        @main_stat = "strength"
+      when "Agility"
+        @strength = 3
+        @fortitude = 4
+        @dexterity = 6
+        @speed = 7
+        @energy = 5
+        @main_stat = "speed"
+      when "Tank"
+        @strength = 7
+        @fortitude = 7
+        @dexterity = 4
+        @speed = 3
+        @energy = 4
+        @main_stat = "fortitude"
+      when "Flying"
+        @strength = 4
+        @fortitude = 4
+        @dexterity = 6
+        @speed = 6
+        @energy = 5
+        @main_stat = "dexterity"
+      when "Tech"
+        @strength = 4
+        @fortitude = 4
+        @dexterity = 5
+        @speed = 5
+        @energy = 7
+        @main_stat = "energy"
+      when "Range"
+        @strength = 4
+        @fortitude = 4
+        @dexterity = 6
+        @speed = 5
+        @energy = 6
+        @main_stat = "dexterity"
+      when "Combat"
+        @strength = 6
+        @fortitude = 6
+        @dexterity = 5
+        @speed = 5
+        @energy = 3
+        @main_stat = "strength"
+      when "Support"
+        @strength = 4
+        @fortitude = 6
+        @dexterity = 4
+        @speed = 4
+        @energy = 7
+        @main_stat = "energy"
+      when "Stealth"
+        @strength = 3
+        @fortitude = 3
+        @dexterity = 7
+        @speed = 6
+        @energy = 6
+        @main_stat = "dexterity"
+      when "Caster"
+        @strength = 4
+        @fortitude = 4
+        @dexterity = 4
+        @speed = 5
+        @energy = 8
+        @main_stat = "energy"
+      when "Berserker"
+        @strength = 8
+        @fortitude = 4
+        @dexterity = 4
+        @speed = 5
+        @energy = 4
+        @main_stat = "strength"
     @hp = ->
-      @fort * 10
-    @crit_dmg = ->
-      1 + ((@dex + @str)/100)
-    @base_dmg = ->
-      @str * 1.5
+      @fortitude * 10
+    @crit_chance = ->
+      @dexterity/100
+    @crit_damage = ->
+      1 + ((@dexterity + @strength)/100)
     @armor = ->
       @fort * 0.5
-    @crit_chance = ->
-      (@dex/100)
     @dodge = ->
-      1 + ((@speed+@dex)/100)
-    @lvl = ->
-      0
+      (@speed + @dexterity)/100
+    switch @main_stat
+      when "strength"
+        @damage = ->
+          @strength * 1.5
+      when "fortitude"
+        @damage = ->
+          @fortitude * 1.5
+      when "dexterity"
+        @damage = ->
+          @dexterity * 1.5
+      when "speed"
+        @damage = ->
+          @speed * 1.5
+      when "energy"
+        @damage = ->
+          @energy * 1.5
+
+
 
 #General Functions
 first_launch = ->
