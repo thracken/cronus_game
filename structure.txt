@@ -21,7 +21,7 @@ Game
     currencies
       gold
       crystals
-    Equipment
+    Equipment #Interchangeable between TeamMembers, give stat boosts or abilities, upgradeable
       Consumables
         # owned
         spend/use (multiple)
@@ -30,6 +30,8 @@ Game
   Prestige
     Hard Reset option
     prestige points - OmniBoosts?
+  Enemies #similar to team members, but a couple levels higher
+
   Team
     Team Leader (Active)
       > Abilities
@@ -39,17 +41,29 @@ Game
     Inactive Team Members
 
     Team Member
-      Class = Agility (Dexterity/Speed), Combat/Brawl, Tech, Flight/Aerial, Ranged
+      Class
       Base Stats = STR, DEX, FORT, SPD, energy
       main stat
       Derived Stats = HP, Crit, Crit Dmg, Dmg, Armor, dodge
       Exp Gained
       level
       active (t/f)
-      Skill Points - currency
+      Skill Points - currency #Used to upgrade attributes
       Equipment Slots
-      Armor
+        1
+        2
+        3
+      Armor #Indivdual to each TeamMember, upgradeable, #multiplier to derived stat(s), multipler differs on various armor pieces
+        #A = X% B = Y% C = Z%
+        Gloves > crit dmg(A), hp(B), damage(C)
+        Chest > energy(A), hp(B), armor(C)
+        Boots > speed(A), armor(B), crit chance(C)
+        Weapon > damage(A), crit_chance(B), crit dmg(C)
+      Talents
+        Stat Bonuses, etc
+        Provides some abilities
       Abilities
+        Usable/Inactive
         Cost(Gold)
         Cost(Energy)
         Level requirement

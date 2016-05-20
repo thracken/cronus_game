@@ -90,6 +90,7 @@ class Currency
       @amount += amount
 
 gold = new Currency
+xp = new Currency
 crystals = new Currency
 
 #Equipment
@@ -98,11 +99,9 @@ class Equipment
 
 
 
-
 #Acheivements
 class Acheivement
   constructor: (@name, @unlock_condition) ->
-
 
 
 
@@ -129,77 +128,77 @@ class TeamMember
         @fortitude = 5
         @dexterity = 5
         @speed = 5
-        @energy = 5
+        @base_energy = 5
         @main_stat = "strength"
       when "Agility"
         @strength = 3
         @fortitude = 4
         @dexterity = 6
         @speed = 7
-        @energy = 5
+        @base_energy = 5
         @main_stat = "speed"
       when "Tank"
         @strength = 7
         @fortitude = 7
         @dexterity = 4
         @speed = 3
-        @energy = 4
+        @base_energy = 4
         @main_stat = "fortitude"
       when "Flying"
         @strength = 4
         @fortitude = 4
         @dexterity = 6
         @speed = 6
-        @energy = 5
+        @base_energy = 5
         @main_stat = "dexterity"
       when "Tech"
         @strength = 4
         @fortitude = 4
         @dexterity = 5
         @speed = 5
-        @energy = 7
+        @base_energy = 7
         @main_stat = "energy"
       when "Range"
         @strength = 4
         @fortitude = 4
         @dexterity = 6
         @speed = 5
-        @energy = 6
+        @base_energy = 6
         @main_stat = "dexterity"
       when "Combat"
         @strength = 6
         @fortitude = 6
         @dexterity = 5
         @speed = 5
-        @energy = 3
+        @base_energy = 3
         @main_stat = "strength"
       when "Support"
         @strength = 4
         @fortitude = 6
         @dexterity = 4
         @speed = 4
-        @energy = 7
+        @base_energy = 7
         @main_stat = "energy"
       when "Stealth"
         @strength = 3
         @fortitude = 3
         @dexterity = 7
         @speed = 6
-        @energy = 6
+        @base_energy = 6
         @main_stat = "dexterity"
       when "Caster"
         @strength = 4
         @fortitude = 4
         @dexterity = 4
         @speed = 5
-        @energy = 8
+        @base_energy = 8
         @main_stat = "energy"
       when "Berserker"
         @strength = 8
         @fortitude = 4
         @dexterity = 4
         @speed = 5
-        @energy = 4
+        @base_energy = 4
         @main_stat = "strength"
     @hp = ->
       @fortitude * 10
@@ -209,8 +208,8 @@ class TeamMember
       1 + ((@dexterity + @strength)/100)
     @armor = ->
       @fort * 0.5
-    @dodge = ->
-      (@speed + @dexterity)/100
+    @energy = ->
+      @base_energy * 5
     switch @main_stat
       when "strength"
         @damage = ->
@@ -226,19 +225,22 @@ class TeamMember
           @speed * main_stat_multiplier
       when "energy"
         @damage = ->
-          @energy * main_stat_multiplier
+          @base_energy * main_stat_multiplier
 
-class TeamAbility
+class Ability
   constructor: (@name, @energy_cost, @upgrade_cost, @cooldown, @level_required) ->
 
 class TeamEquipment
+  constructor: ->
+
+
 
 class TeamArmor
 
 
 #General Functions
 first_launch = ->
-  true
+  false
 
 first_run = ->
   if first_launch()
