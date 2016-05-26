@@ -1,7 +1,7 @@
 #Story Owned Items
 #Story Segments
 class StoryPage
-  constructor: (@image, @text) -> #add @animation
+  constructor: (@image, @text, @animate = ->) ->
 
 class StorySegment
   @total_segments = 0
@@ -39,11 +39,13 @@ class StorySegment
     @show = ->
       progress = 0
       $("#story-segment-#{@num}").modal({"show": "true", backdrop: "static"})
+      @pages[progress].animate()
       #Advance to previous/next image when clicked
       $('#story-arrow-left').click( =>
         if progress > 0
           progress -= 1
           $('.story-image').attr('src', @pages[progress].image)
+          @pages[progress].animate()
           $("#segment-#{@num}-text").text(@pages[progress].text)
       )
       $('#story-arrow-right').click( =>
@@ -53,6 +55,7 @@ class StorySegment
         if progress < @pages.length - 1
           progress += 1
           $('.story-image').attr('src', @pages[progress].image)
+          @pages[progress].animate()
           $("#segment-#{@num}-text").text(@pages[progress].text)
       )
       $('#story-close').click( =>
@@ -63,7 +66,19 @@ class StorySegment
 #Story Segment Creation
 #Segment 1
 segment1_pages = [
-  story001_0 = new StoryPage('img/intro0.jpg', '<em>Wha... what? Where am I?</em>')
+  story001_0 = new StoryPage('img/intro0.jpg', '*Wha... what? Where am I?*', ->
+    #page1 animations here
+    ###
+    $("#segment-1-image").css("bottom", "0px")
+    setTimeout(
+      finalspot = $("#segment-1-image").height() - window.innerHeight
+      $("#segment-1-image").animate(
+        bottom: "-=" + finalspot
+        , 6000
+        )
+    , 2000)
+    ###
+  )
   story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."')
   story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*')
   story001_3 = new StoryPage('img/intro3.jpg', 'And so on...')
@@ -76,6 +91,7 @@ segment1_pages = [
 ]
 
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
+
 
 
 
@@ -240,7 +256,7 @@ class TeamArmor
 
 #General Functions
 first_launch = ->
-  false
+  true
 
 first_run = ->
   if first_launch()

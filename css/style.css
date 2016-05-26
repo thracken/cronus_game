@@ -152,9 +152,11 @@ body{}
   padding: 0px;
   height: 100%;
   overflow-y: hidden;
+  position: relative;
 }
 .story-image{
   width:100%;
+  position:absolute;
 }
 #story-arrow-left, #story-arrow-right{
   font-size: 3em;
