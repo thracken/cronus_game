@@ -2,8 +2,8 @@
 var Ability, Acheivement, Currency, Equipment, StoryPage, StorySegment, Team, TeamArmor, TeamEquipment, TeamMember, crystals, first_launch, first_run, gold, segment1, segment1_pages, story001_0, story001_1, story001_2, story001_3, story001_4, story001_5, story001_6, story001_7, story001_8, xp, xp_tick;
 
 StoryPage = (function() {
-  function StoryPage(image, text, animate) {
-    this.image = image;
+  function StoryPage(image1, text, animate) {
+    this.image = image1;
     this.text = text;
     this.animate = animate != null ? animate : function() {};
   }
@@ -26,7 +26,7 @@ StorySegment = (function() {
       var html, segment_link;
       segment_link = "<div><p id ='segment_link_" + this.num + "' class='segment_link'>" + this.num + " - " + this.name + "</p></div>";
       $('#story_tab').append(segment_link);
-      html = ("<div id='story-segment-" + this.num + "' class='story-segment modal fade'>") + "<div class='modal-dialog' role='document'>" + "<div class='modal-content'>" + "<div class='modal-header'>" + "<button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button>" + ("<h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4>") + "</div>" + "<div class='modal-body'>" + "<span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span>" + ("<img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[0].image + "' class='row' />") + ("<div id='segment-" + this.num + "-text' class='segment-text'>" + this.pages[0].text + "</div>") + "<span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span>" + "</div>" + "<div class='modal-footer'>" + "</div>" + "</div>" + "</div>" + "</div>";
+      html = "<div id='story-segment-" + this.num + "' class='story-segment modal fade'> <div class='modal-dialog' role='document'> <div class='modal-content'> <div class='modal-header'> <button id='story-close' type='button' class='close' data-dismiss='modal' aria-label='Close' title='Close'><span aria-hidden='true'>&times;</span></button> <h4 class='modal-title' id='myModalLabel'>" + this.num + " - " + this.name + "</h4> </div> <div class='modal-body'> <span id='story-arrow-left' class='glyphicon glyphicon-chevron-left'></span> <img id='segment-" + this.num + "-image' class='story-image' src='" + this.pages[0].image + "' class='row' /> <div id='segment-" + this.num + "-text' class='segment-text'>" + this.pages[0].text + "</div> <span id='story-arrow-right' class='glyphicon glyphicon-chevron-right'></span> </div> <div class='modal-footer'> </div> </div> </div> </div>";
       $('#wrapper').append(html);
       return $("#segment_link_" + this.num).click((function(_this) {
         return function() {
@@ -47,8 +47,8 @@ StorySegment = (function() {
           if (progress > 0) {
             progress -= 1;
             $('.story-image').attr('src', _this.pages[progress].image);
-            _this.pages[progress].animate();
-            return $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
+            $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
+            return _this.pages[progress].animate();
           }
         };
       })(this));
@@ -61,8 +61,8 @@ StorySegment = (function() {
           if (progress < _this.pages.length - 1) {
             progress += 1;
             $('.story-image').attr('src', _this.pages[progress].image);
-            _this.pages[progress].animate();
-            return $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
+            $("#segment-" + _this.num + "-text").text(_this.pages[progress].text);
+            return _this.pages[progress].animate();
           }
         };
       })(this));
@@ -82,12 +82,17 @@ StorySegment = (function() {
 
 segment1_pages = [
   story001_0 = new StoryPage('img/intro0.jpg', '*Wha... what? Where am I?*', function() {
-    var finalspot;
+    var scroll_height;
     $("#segment-1-image").css("bottom", "0px");
-    return setTimeout(finalspot = $("#segment-1-image").height() - window.innerHeight, $("#segment-1-image").animate({
-      bottom: "-=" + finalspot
-    }, 6000), 2000);
-  }), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."'), story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*'), story001_3 = new StoryPage('img/intro3.jpg', 'And so on...'), story001_4 = new StoryPage('img/intro4.jpg', 'Text Here'), story001_5 = new StoryPage('img/intro5.jpg', 'And Here'), story001_6 = new StoryPage('img/intro6.jpg', 'Also Here'), story001_7 = new StoryPage('img/intro7.jpg', 'Here Too'), story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here'), story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here')
+    scroll_height = $("#segment-1-image").height() - window.innerHeight;
+    return $("#segment-1-image").animate({
+      "bottom": "-" + scroll_height
+    }, 2000);
+  }), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."', function() {
+    var image;
+    image = $("#segment-1-image");
+    return image.css("bottom", '');
+  }), story001_2 = new StoryPage('img/intro2.jpg', '*Hnngh!*', function() {}), story001_3 = new StoryPage('img/intro3.jpg', 'And so on...', function() {}), story001_4 = new StoryPage('img/intro4.jpg', 'Text Here', function() {}), story001_5 = new StoryPage('img/intro5.jpg', 'And Here', function() {}), story001_6 = new StoryPage('img/intro6.jpg', 'Also Here', function() {}), story001_7 = new StoryPage('img/intro7.jpg', 'Here Too', function() {}), story001_8 = new StoryPage('img/intro8.jpg', 'More Text Here', function() {}), story001_8 = new StoryPage('img/intro9.jpg', 'Final Text Here', function() {})
 ];
 
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages);
