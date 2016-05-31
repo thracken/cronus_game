@@ -82,12 +82,10 @@ StorySegment = (function() {
 
 segment1_pages = [
   story001_0 = new StoryPage('img/intro0.jpg', '*Wha... what? Where am I?*', function() {
-    var scroll_height;
-    $("#segment-1-image").css("bottom", "0px");
-    scroll_height = $("#segment-1-image").height() - window.innerHeight;
-    return $("#segment-1-image").animate({
-      "bottom": "-" + scroll_height
-    }, 2000);
+    $("#segment-1-image").css({
+      bottom: "0px"
+    });
+    return $("#segment-1-image").animate();
   }), story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."', function() {
     var image;
     image = $("#segment-1-image");
@@ -317,6 +315,11 @@ TeamArmor = (function() {
 
 })();
 
+xp_tick = function() {
+  xp.gain(1);
+  return $('#xp_label').text(xp.amount + " xp");
+};
+
 first_launch = function() {
   return true;
 };
@@ -326,11 +329,6 @@ first_run = function() {
     segment1.unlock();
     return segment1.show();
   }
-};
-
-xp_tick = function() {
-  xp.gain(1);
-  return $('#xp_label').text(xp.amount + " xp");
 };
 
 $(document).ready(function() {

@@ -67,12 +67,8 @@ class StorySegment
 #Segment 1
 segment1_pages = [
   story001_0 = new StoryPage('img/intro0.jpg', '*Wha... what? Where am I?*', ->
-    $("#segment-1-image").css("bottom", "0px")
-    scroll_height = $("#segment-1-image").height() - window.innerHeight
-    $("#segment-1-image").animate(
-      "bottom": "-#{scroll_height}"
-      , 2000
-    )
+    $("#segment-1-image").css({bottom: "0px"})
+    $("#segment-1-image").animate()
   )
   story001_1 = new StoryPage('img/intro1.jpg', '"Hey! Let\'s get you out of there."', ->
     image = $("#segment-1-image")
@@ -89,8 +85,6 @@ segment1_pages = [
 ]
 
 segment1 = new StorySegment(1, "Let's get out of here...", segment1_pages)
-
-
 
 
 #Player Owned Items
@@ -253,6 +247,10 @@ class TeamArmor
 
 
 #General Functions
+xp_tick = ->
+  xp.gain(1)
+  $('#xp_label').text("#{xp.amount} xp")
+
 first_launch = ->
   true
 
@@ -260,11 +258,6 @@ first_run = ->
   if first_launch()
     segment1.unlock()
     segment1.show()
-
-xp_tick = ->
-  xp.gain(1)
-  $('#xp_label').text("#{xp.amount} xp")
-
 
 #Game Loop
 $(document).ready ->
