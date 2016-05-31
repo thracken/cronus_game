@@ -1,0 +1,176 @@
+/*Variables, etc*/
+$white: #ffffff;
+$black: #000000;
+
+/*Top Level Styles*/
+body{}
+#wrapper{
+  max-width: 960px;
+  background-color: #f0f0f0;
+  padding: 0;
+}
+.navbar{
+  margin-bottom: 0;
+}
+.row{
+  margin: 0;
+}
+@media (min-width: 768px){
+  .navbar {
+      border-radius: 0px;
+  }
+}
+
+/*Left/Top Half of Page*/
+#left_top{
+  padding: 0;
+}
+
+/*Currency Bar*/
+#currency_bar{
+  height:50px;
+  color: $white;
+  background: linear-gradient(to right, $black 0%,#000088 50%, $black 100%);
+  .navbar-brand{
+    color: $white;
+  }
+  #settings_icon{
+    color: $white;
+    margin: 0;
+    position:absolute;
+    top: 35%;
+    right: 15px;
+    cursor:pointer;
+  }
+}
+
+/*Main Image*/
+#main_image{
+  margin: 0;
+  overflow: hidden;
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 430px;
+  }
+}
+
+/*Experience Bar*/
+#xp_bar{
+  margin: 0;
+  width: 100%;
+  border:1px solid $black;
+  background-color: $white;
+  p{
+    font-size: 12px;
+    padding: 0;
+    color: $white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+  }
+  #current_level{
+    float: left;
+    margin: 0 8px;
+  }
+  #next_level{
+    float: right;
+    margin: 0 8px;
+  }
+  #xp_label{
+    margin: 0 auto;
+  }
+}
+
+/*Right/Bottom half of page*/
+#right_bottom{
+  padding: 0;
+}
+
+/*Menu Bar*/
+#menu_bar{
+  margin: 0;
+  border: none;
+  background-color: #e5e5e5;
+  height: 50px;
+  #menu_bar_items{
+    padding: 9px 0 0 0;
+  }
+}
+
+/*Content Tabs*/
+#tabs{
+  min-height: 430px;
+  padding: 15px;
+  background-color: $white;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  .segment_link{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #337ab7;
+  }
+}
+
+/*Stort Segment Modal*/
+.story-segment{
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+}
+.segment-text{
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  bottom: 10%;
+  color: $white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 0;
+}
+.modal-open .modal{
+  overflow: hidden;
+}
+.modal-dialog{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal-content{
+  color: $black;
+  width: 100vw;
+  height: 100vh;
+}
+.modal-header{
+  padding: 10px;
+  .close{
+    margin: 0 15px 0 0;
+  }
+}
+.modal-body{
+  padding: 0px;
+  height: 100%;
+  overflow-y: hidden;
+  position: relative;
+}
+.story-image{
+  width:100%;
+  position:absolute;
+}
+#story-arrow-left, #story-arrow-right{
+  font-size: 3em;
+  color: $white;
+  text-shadow: 0px 0px 10px $black;
+  position: absolute;
+  top: 45vh;
+  z-index: 2;
+  cursor:pointer;
+}
+#story-arrow-left{
+  left: 0em;
+}
+#story-arrow-right{
+  right: 0em;
+}
